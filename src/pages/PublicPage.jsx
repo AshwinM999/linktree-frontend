@@ -6,7 +6,7 @@ function PublicPage() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    fetch("https://linktree-backend-1.onrender.com/api/profile/" + username)
+    fetch("http://localhost:5000/api/profile/" + username)
       .then(res => res.json())
       .then(setUser);
   }, [username]);
