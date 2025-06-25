@@ -9,7 +9,7 @@ function ProfileSetup() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("https://linktree-frontend-one.vercel.app/api/user/me", {
+    fetch("https://linktree-backend-3ekq.onrender.com/api/user/me", {
       headers: { Authorization: "Bearer " + localStorage.getItem("token") }
     })
       .then(r => r.json())
@@ -62,7 +62,7 @@ function ProfileSetup() {
   };
 
   const handleSubmit = async () => {
-    const res = await fetch("https://linktree-frontend-one.vercel.app/api/user/me", {
+    const res = await fetch("https://linktree-backend-3ekq.onrender.com/api/user/me", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

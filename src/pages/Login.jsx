@@ -7,7 +7,7 @@ function Login() {
   const navigate = useNavigate();
 
   const handleLogin = async () => {
-    const res = await fetch("https://linktree-frontend-one.vercel.app/api/auth/login", {
+    const res = await fetch("https://linktree-backend-3ekq.onrender.com/api/auth/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password })
