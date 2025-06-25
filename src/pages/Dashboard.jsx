@@ -102,7 +102,12 @@ function Dashboard() {
       alert("Failed to update profile");
     }
   };
-
+const handleCopyLink = () => {
+  const publicLink = `https://linktree-frontend-3ekq.onrender.com/u/${user.username}`;
+  navigator.clipboard.writeText(publicLink).then(() => {
+    alert("Public link copied to clipboard!");
+  });
+};
   const handleProfileReset = async () => {
     const res = await fetch("https://linktree-backend-3ekq.onrender.com/api/user/me/reset", {
       method: "PUT",
@@ -135,7 +140,22 @@ function Dashboard() {
                 <p className="username">@{user.username}</p>
                 <p className="bio">{user.bio}</p>
                 <button onClick={() => setEditingProfile(true)}>Edit Profile</button>
+                <div style={{ marginTop: "12px" }}>
+                  <a
+                    href={`https://linktree-frontend-3ekq.onrender.com/u/${user.username}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="public-link"
+                  >
+                    🔗 View Public Page
+                  </a>
+                  <button className="copy-link" onClick={handleCopyLink}>
+                    📋 Copy Link
+                  </button>
+                </div>
+
               </div>
+              
             ) : (
               <div className="link-form">
                 <h3>Edit Profile</h3>

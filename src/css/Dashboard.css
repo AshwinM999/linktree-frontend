@@ -135,3 +135,30 @@ body {
   background-color: #4f46e5;
   color: white;
 }
+.public-link {
+  display: inline-block;
+  margin-top: 12px;
+  font-weight: 500;
+  color: #4f46e5;
+  text-decoration: none;
+}
+
+.public-link:hover {
+  text-decoration: underline;
+}
+
+.copy-link {
+  display: inline-block;
+  margin-left: 12px;
+  padding: 6px 12px;
+  font-size: 14px;
+  background-color: #4f46e5;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.copy-link:hover {
+  background-color: #3730a3;
+}
