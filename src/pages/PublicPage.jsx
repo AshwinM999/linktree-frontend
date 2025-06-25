@@ -6,7 +6,7 @@ function PublicPage() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/profile/" + username)
+    fetch("https://linktree-frontend-one.vercel.app/api/profile/" + username)
       .then(res => res.json())
       .then(setUser);
   }, [username]);
