@@ -1,62 +1,3 @@
-// import React, { useState, useEffect } from "react";
-// import { useNavigate } from "react-router-dom";
-// import '../css/ProfileSetup.css';
-// function ProfileSetup() {
-//   const [username, setUsername] = useState("");
-//   const [bio, setBio] = useState("");
-//   const [profileImage, setProfileImage] = useState("");
-//   const navigate = useNavigate();
-
-//   useEffect(() => {
-//     fetch("http://localhost:5000/api/user/me", {
-//       headers: { Authorization: "Bearer " + localStorage.getItem("token") }
-//     })
-//       .then(res => res.json())
-//       .then(data => {
-//         if (data.username) {
-//           navigate("/dashboard");
-//         }
-//       });
-//   }, []);
-
-//   const handleSubmit = async () => {
-//     const res = await fetch("http://localhost:5000/api/user/me", {
-//       method: "PUT",
-//       headers: {
-//         "Content-Type": "application/json",
-//         Authorization: "Bearer " + localStorage.getItem("token")
-//       },
-//       body: JSON.stringify({ username, bio, profileImage })
-//     });
-//     if (res.ok) navigate("/dashboard");
-//     else alert("Failed to save profile");
-//   };
-
-// return (
-//   <div className="setup-container">
-//     <h2>Set Up Your Profile</h2>
-//     <input
-//       placeholder="Username"
-//       value={username}
-//       onChange={(e) => setUsername(e.target.value)}
-//     />
-//     <input
-//       placeholder="Bio"
-//       value={bio}
-//       onChange={(e) => setBio(e.target.value)}
-//     />
-//     <input
-//       placeholder="Profile Image URL"
-//       value={profileImage}
-//       onChange={(e) => setProfileImage(e.target.value)}
-//     />
-//     <button onClick={handleSubmit}>Save</button>
-//   </div>
-// );
-// }
-
-// export default ProfileSetup;
-
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import '../css/ProfileSetup.css';
@@ -68,7 +9,7 @@ function ProfileSetup() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/user/me", {
+    fetch("https://linktree-backend-1.onrender.com/api/user/me", {
       headers: { Authorization: "Bearer " + localStorage.getItem("token") }
     })
       .then(r => r.json())
@@ -122,7 +63,7 @@ function ProfileSetup() {
 
   // 4) Submit profile (JSON with Base64 string)
   const handleSubmit = async () => {
-    const res = await fetch("http://localhost:5000/api/user/me", {
+    const res = await fetch("https://linktree-backend-1.onrender.com/api/user/me", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
