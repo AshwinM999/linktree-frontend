@@ -103,7 +103,7 @@ function Dashboard() {
     }
   };
 const handleCopyLink = () => {
-  const publicLink = `https://linktree-frontend-3ekq.onrender.com/u/${user.username}`;
+  const publicLink = `https://linktree-frontend-one.vercel.app/${user.username}`;
   navigator.clipboard.writeText(publicLink).then(() => {
     alert("Public link copied to clipboard!");
   });
@@ -142,7 +142,7 @@ const handleCopyLink = () => {
                 <button onClick={() => setEditingProfile(true)}>Edit Profile</button>
                 <div style={{ marginTop: "12px" }}>
                   <a
-                    href={`https://linktree-frontend-3ekq.onrender.com/u/${user.username}`}
+                    href={`https://linktree-frontend-one.vercel.app/${user.username}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="public-link"
