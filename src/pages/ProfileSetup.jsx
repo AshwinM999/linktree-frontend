@@ -8,7 +8,7 @@
 //   const navigate = useNavigate();
 
 //   useEffect(() => {
-//     fetch("http://localhost:5000/api/user/me", {
+//     fetch("https://linktree-backend-kyqe.onrender.com/api/user/me", {
 //       headers: { Authorization: "Bearer " + localStorage.getItem("token") }
 //     })
 //       .then(res => res.json())
@@ -20,7 +20,7 @@
 //   }, []);
 
 //   const handleSubmit = async () => {
-//     const res = await fetch("http://localhost:5000/api/user/me", {
+//     const res = await fetch("https://linktree-backend-kyqe.onrender.com/api/user/me", {
 //       method: "PUT",
 //       headers: {
 //         "Content-Type": "application/json",
@@ -68,7 +68,7 @@ function ProfileSetup() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/user/me", {
+    fetch("https://linktree-backend-kyqe.onrender.com/api/user/me", {
       headers: { Authorization: "Bearer " + localStorage.getItem("token") }
     })
       .then(r => r.json())
@@ -122,7 +122,7 @@ function ProfileSetup() {
 
   // 4) Submit profile (JSON with Base64 string)
   const handleSubmit = async () => {
-    const res = await fetch("http://localhost:5000/api/user/me", {
+    const res = await fetch("https://linktree-backend-kyqe.onrender.com/api/user/me", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
