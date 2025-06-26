@@ -7,7 +7,7 @@ function Register() {
   const navigate = useNavigate();
 
   const handleRegister = async () => {
-    const res = await fetch("https://linktree-backend-3ekq.onrender.com/api/auth/register", {
+    const res = await fetch("${BACKEND_URL}/api/auth/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password })

@@ -9,7 +9,7 @@ function ProfileSetup() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("https://linktree-backend-3ekq.onrender.com/api/user/me", {
+    fetch("${BACKEND_URL}/api/user/me", {
       headers: { Authorization: "Bearer " + localStorage.getItem("token") }
     })
       .then(r => r.json())
@@ -61,7 +61,7 @@ function ProfileSetup() {
   };
 
   const handleSubmit = async () => {
-    const res = await fetch("https://linktree-backend-3ekq.onrender.com/api/user/me", {
+    const res = await fetch("${BACKEND_URL}/api/user/me", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

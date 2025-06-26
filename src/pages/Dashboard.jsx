@@ -21,7 +21,7 @@ function Dashboard() {
   };
 
   const fetchData = async () => {
-    const res = await fetch("https://linktree-backend-3ekq.onrender.com/api/user/me", {
+    const res = await fetch("${BACKEND_URL}/api/user/me", {
       headers: { Authorization: "Bearer " + localStorage.getItem("token") }
     });
     const data = await res.json();
@@ -36,7 +36,7 @@ function Dashboard() {
   }, []);
 
   const addLink = async () => {
-    const res = await fetch("https://linktree-backend-3ekq.onrender.com/api/user/me/links", {
+    const res = await fetch("${BACKEND_URL}/api/user/me/links", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -50,7 +50,7 @@ function Dashboard() {
   };
 
   const deleteLink = async (id) => {
-    const res = await fetch(`https://linktree-backend-3ekq.onrender.com/api/user/me/links/${id}`, {
+    const res = await fetch(`${BACKEND_URL}/api/user/me/links/${id}`, {
       method: "DELETE",
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token")
@@ -61,7 +61,7 @@ function Dashboard() {
   };
 
   const updateLink = async () => {
-    const res = await fetch(`https://linktree-backend-3ekq.onrender.com/api/user/me/links/${editingLink._id}`, {
+    const res = await fetch(`${BACKEND_URL}/api/user/me/links/${editingLink._id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -118,7 +118,7 @@ function Dashboard() {
   };
 
   const handleProfileUpdate = async () => {
-    const res = await fetch("https://linktree-backend-3ekq.onrender.com/api/user/me", {
+    const res = await fetch("${BACKEND_URL}/api/user/me", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -148,7 +148,7 @@ function Dashboard() {
   };
 
   const handleProfileReset = async () => {
-    const res = await fetch("https://linktree-backend-3ekq.onrender.com/api/user/me/reset", {
+    const res = await fetch("${BACKEND_URL}/api/user/me/reset", {
       method: "PUT",
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token")
