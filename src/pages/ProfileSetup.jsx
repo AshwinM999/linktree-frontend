@@ -73,6 +73,7 @@ function ProfileSetup() {
         profileImage: avatarBase64
       })
     });
+     const data = await res.json()
     if (res.ok) navigate("/dashboard");
     else {
     if (data?.error?.toLowerCase().includes("username already exists")) {
