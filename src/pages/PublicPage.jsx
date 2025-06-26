@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "../index.css"
 function PublicPage() {
+  const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
   const { username } = useParams();
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    fetch("${BACKEND_URL}/api/profile/" + username)
+    fetch(`${BACKEND_URL}/api/profile/` + username)
       .then(res => res.json())
       .then(setUser);
   }, [username]);

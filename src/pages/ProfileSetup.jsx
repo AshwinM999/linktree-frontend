@@ -3,13 +3,14 @@ import { useNavigate } from "react-router-dom";
 import '../css/ProfileSetup.css';
 
 function ProfileSetup() {
+  const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
   const [username, setUsername]         = useState("");
   const [bio, setBio]                   = useState("");
   const [avatarBase64, setAvatarBase64] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("${BACKEND_URL}/api/user/me", {
+    fetch(`${BACKEND_URL}/api/user/me`, {
       headers: { Authorization: "Bearer " + localStorage.getItem("token") }
     })
       .then(r => r.json())
@@ -61,7 +62,7 @@ function ProfileSetup() {
   };
 
   const handleSubmit = async () => {
-    const res = await fetch("${BACKEND_URL}/api/user/me", {
+    const res = await fetch(`${BACKEND_URL}/api/user/me`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
