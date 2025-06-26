@@ -54,7 +54,6 @@ function ProfileSetup() {
       setAvatarBase64(compressedDataUrl);
     } catch (err) {
       console.error("Image compression failed", err);
-      // fallback: use original
       const fr = new FileReader();
       fr.onloadend = () => setAvatarBase64(fr.result);
       fr.readAsDataURL(file);
@@ -75,7 +74,12 @@ function ProfileSetup() {
       })
     });
     if (res.ok) navigate("/dashboard");
+    else {
+    if (data?.error?.toLowerCase().includes("username already exists")) {
+      alert("Username already exists. Please choose a different one.");
+    }
     else alert("Failed to save profile");
+  }
   };
 
   return (

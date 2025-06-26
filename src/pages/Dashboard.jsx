@@ -80,6 +80,43 @@ function Dashboard() {
     setUrl(link.url);
   };
 
+  const compressFile = (file, maxWidth = 600) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onerror = err => reject(err);
+      reader.onload = () => {
+        const img = new Image();
+        img.onload = () => {
+          const ratio = maxWidth / img.width;
+          const canvas = document.createElement("canvas");
+          canvas.width = maxWidth;
+          canvas.height = img.height * ratio;
+          const ctx = canvas.getContext("2d");
+          ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+          const dataUrl = canvas.toDataURL("image/jpeg", 0.7);
+          resolve(dataUrl);
+        };
+        img.onerror = err => reject(err);
+        img.src = reader.result;
+      };
+      reader.readAsDataURL(file);
+    });
+  };
+
+  const handleFileChange = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    try {
+      const compressed = await compressFile(file);
+      setEditProfileImage(compressed);
+    } catch (err) {
+      console.error("Compression failed", err);
+      const reader = new FileReader();
+      reader.onloadend = () => setEditProfileImage(reader.result);
+      reader.readAsDataURL(file);
+    }
+  };
+
   const handleProfileUpdate = async () => {
     const res = await fetch("https://linktree-backend-3ekq.onrender.com/api/user/me", {
       method: "PUT",
@@ -102,12 +139,14 @@ function Dashboard() {
       alert("Failed to update profile");
     }
   };
-const handleCopyLink = () => {
-  const publicLink = `https://linktree-frontend-one.vercel.app/${user.username}`;
-  navigator.clipboard.writeText(publicLink).then(() => {
-    alert("Public link copied to clipboard!");
-  });
-};
+
+  const handleCopyLink = () => {
+    const publicLink = `https://linktree-frontend-one.vercel.app/${user.username}`;
+    navigator.clipboard.writeText(publicLink).then(() => {
+      alert("Public link copied to clipboard!");
+    });
+  };
+
   const handleProfileReset = async () => {
     const res = await fetch("https://linktree-backend-3ekq.onrender.com/api/user/me/reset", {
       method: "PUT",
@@ -153,9 +192,7 @@ const handleCopyLink = () => {
                     📋 Copy Link
                   </button>
                 </div>
-
               </div>
-              
             ) : (
               <div className="link-form">
                 <h3>Edit Profile</h3>
@@ -169,11 +206,19 @@ const handleCopyLink = () => {
                   value={editBio}
                   onChange={(e) => setEditBio(e.target.value)}
                 />
-                <input
-                  placeholder="Profile Image URL"
-                  value={editProfileImage}
-                  onChange={(e) => setEditProfileImage(e.target.value)}
-                />
+                <div className="avatar-upload">
+                  <label>Profile Image</label>
+                  <input type="file" accept="image/*" onChange={handleFileChange} />
+                </div>
+                {editProfileImage && (
+                  <div className="avatar-preview">
+                    <img
+                      src={editProfileImage}
+                      alt="Preview"
+                      style={{ width: "100px", borderRadius: "8px", marginTop: "8px" }}
+                    />
+                  </div>
+                )}
                 <button onClick={handleProfileUpdate}>Update Profile</button>
                 <button
                   onClick={handleProfileReset}
